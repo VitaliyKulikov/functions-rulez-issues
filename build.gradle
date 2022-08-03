@@ -1,0 +1,66 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '2.7.2'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'feed'
+version = '1.0'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+    vendor = JvmVendorSpec.BELLSOFT
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  all {
+    // exclude module: 'spring-boot-starter-web'
+  }
+	compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+ext {
+	set('springCloudVersion', '2021.0.3')
+}
+
+dependencies {
+
+  // Annotations
+  annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+  // Development
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+  // Platforms
+  implementation platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+
+  // Spring Boot
+  implementation 'org.springframework.cloud:spring-cloud-starter-function-webflux'
+	runtimeOnly 'org.springframework.boot:spring-boot-starter-actuator'
+
+  // Spring Stream | COMMENT NEXT LINE TO CHECK THAT WORKING
+  implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+ 
+  // Spring Doc
+  implementation "org.springdoc:springdoc-openapi-webflux-ui:latest.release"
+  
+  // Testing
+  testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
+	testImplementation 'io.projectreactor:reactor-test'
+
+}
+
+// testing //
+
+test {
+	useJUnitPlatform()
+}

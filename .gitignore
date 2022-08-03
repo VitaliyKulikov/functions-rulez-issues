@@ -1,0 +1,8 @@
+# dot files
+.*
+!.gitignore
+
+# build dirs
+/bin
+/build
+/target
