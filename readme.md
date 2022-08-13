@@ -1,6 +1,6 @@
 # two issues then spring-cloud-stream-binder-kafka is enabled
 
-## (1) swagger is not loading. show error
+## (1) swagger is not loading. show error. [seems fixed](https://github.com/springdoc/springdoc-openapi/commit/5257353a938948bc893f648d137c9bb5bb942585) 
 
 - let's start.
 let's say we don't have alive kafka broker, but with live one result is same.
